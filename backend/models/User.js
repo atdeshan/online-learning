@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
       return this.role === 'Admin';  // Only required for Admins
     }
   },
-  coueces: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
   role: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }

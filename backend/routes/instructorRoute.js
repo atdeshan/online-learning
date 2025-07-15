@@ -47,5 +47,8 @@ router.post('/:id/courses', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+// router.post('/upload-lessons', async (req, res) => {
+  
+// });
 
 module.exports = router;
