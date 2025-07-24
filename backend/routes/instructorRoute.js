@@ -47,8 +47,27 @@ router.post('/:id/courses', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-// router.post('/upload-lessons', async (req, res) => {
-  
-// });
+router.get('/:id/course_details', async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id).populate('instructor', 'name email');
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+    res.json(course);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+router.get('/teacher/:teacherId',async (req,res) =>{
+  try{
+    const teacher = await User.findById(req.params.teacherId);
+    if(!teacher){
+      return res.status(404).json({message:"Teacher not found"});
+    }
+    res.json(teacher)
+  }catch(err){
+    console.error(err);
+    res.status(500).json({message:"Server Error"});
+  }
+})
 
 module.exports = router;
